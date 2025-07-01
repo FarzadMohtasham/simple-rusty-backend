@@ -8,7 +8,7 @@ const PORT: u16 = 2099;
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
-    let server = HttpServer::new(|| App::new().service(get_home).service(hello_user))
+    let server: actix_web::dev::Server = HttpServer::new(|| App::new().service(get_home).service(hello_user))
         .bind((ADDR, PORT))?
         .run();
 

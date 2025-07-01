@@ -24,11 +24,11 @@ impl User {
 
 #[get("/home/{first_name}/{last_name}")]
 pub async fn hello_user(params: Path<(String, String)>) -> impl Responder {
-    let firstname = &params.0;
-    let lastname = &params.1;
+    let firstname: &String = &params.0;
+    let lastname: &String = &params.1;
 
     logging(format!("/home/first_name({})/last_name({})", firstname, lastname).as_str());
 
-    let response = User::new(firstname.clone(), lastname.clone());
+    let response: User = User::new(firstname.clone(), lastname.clone());
     (Json(response), StatusCode::OK)
 }
