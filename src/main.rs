@@ -6,11 +6,12 @@ use routes::*;
 const ADDR: &str = "127.0.0.1";
 const PORT: u16 = 2099;
 
-#[actix_web::main]
+#[tokio::main]
 async fn main() -> std::io::Result<()> {
-    let server: actix_web::dev::Server = HttpServer::new(|| App::new().service(get_home).service(hello_user))
-        .bind((ADDR, PORT))?
-        .run();
+    let server: actix_web::dev::Server =
+        HttpServer::new(|| App::new().service(get_home).service(hello_user))
+            .bind((ADDR, PORT))?
+            .run();
 
     println!("Server is running on {}:{}", ADDR, PORT);
 
