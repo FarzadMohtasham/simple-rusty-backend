@@ -3,11 +3,11 @@ use actix_web::{
     http::StatusCode,
     web::{Json, Path},
 };
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 
 use crate::routes::logging;
 
-#[derive(Serialize)]
+#[derive(Serialize, Deserialize, Debug)]
 pub struct User {
     first_name: String,
     last_name: String,
